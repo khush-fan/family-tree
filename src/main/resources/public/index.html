@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
+    <title>Мое семейное древо</title>
+    
+    <!-- Подключаем FamilyTreeJS -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        .container {
+            /* max-width: 1400px; */
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: #2c3e50;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            margin: 0 0 15px 0;
+            font-size: 2.2em;
+        }
+        
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            flex-wrap: wrap;
+            padding: 15px;
+            background: #34495e;
+        }
+        
+        .controls button {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .controls button:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+        }
+        #tree{
+            height: 90vh;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>🌳Cемейное древо</h1>
+        </header>
+
+        <div class="controls">
+            <button id="zoomIn">➕ Увеличить</button>
+            <button id="zoomOut">➖ Уменьшить</button>
+            <button id="fit">📐 Вписать в экран</button>
+        </div>
+
+        <main>
+            <div id="tree"></div>
+        </main>
+    </div>
+
+    <!-- Подключаем библиотеку -->
+    <script src="./lib/familytree.js"></script>
+    <script src="./js/app.js"></script>
+</body>
+</html>

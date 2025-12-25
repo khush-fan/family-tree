@@ -4,22 +4,29 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e65ea20b-a875-43b3-be7e-1e369a3c8c6b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+    <list default="true" id="e65ea20b-a875-43b3-be7e-1e369a3c8c6b" name="Changes" comment="добавлены модель Person, PersonDao">
       <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/fankhush/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/fankhush/PersonDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/fankhush/entity/Gender.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/fankhush/entity/Person.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/fankhush/utils/ConnectionManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/fankhush/utils/PropertiesUtil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/fankhush/config/JacksonConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/fankhush/controller/PersonController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/fankhush/dto/CreatePersonRequestDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/fankhush/dto/FamilyTreeNodeDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/fankhush/dto/PersonDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/fankhush/mapper/PersonMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/fankhush/server/Server.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/fankhush/service/PersonService.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/public/css/style.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/public/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/public/js/app.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/public/lib/familytree.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/public/lib/familytree2.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/public/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/fankhush/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/fankhush/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/fankhush/PersonDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/fankhush/dao/PersonDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/fankhush/entity/Person.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/fankhush/entity/Person.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,33 +47,61 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
   <component name="ProjectId" id="36syy2ggmbgPAqGXEu5zlAkJm1L" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "settings.editor.selected.configurable": "reference.projectsettings.compiler.annotationProcessors"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;Groovy compiler&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "postgresql"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;postgresql&quot;
+    ],
+    &quot;com.intellij.ide.scratch.LRUPopupBuilder$1/Set Highlighting Language&quot;: [
+      &quot;PostgreSQL&quot;
     ]
   }
-}]]></component>
-  <component name="RunManager">
+}</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Fanil\IdeaProjects\family-tree\src\main\resources\public" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.Main">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="ru.fankhush.Main" />
       <module name="family-tree" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="ru.fankhush.*" />
+          <option name="PATTERN" value="ru.fankhush.dao.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Server" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ru.fankhush.server.Server" />
+      <module name="family-tree" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ru.fankhush.server.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -77,6 +112,7 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main" />
+        <item itemvalue="Application.Server" />
       </list>
     </recent_temporary>
   </component>
@@ -89,8 +125,34 @@
       <option name="presentableId" value="Default" />
       <updated>1765809825397</updated>
       <workItem from="1765809827833" duration="6796000" />
-      <workItem from="1766072270157" duration="9390000" />
+      <workItem from="1766072270157" duration="9568000" />
+      <workItem from="1766243824105" duration="5213000" />
+      <workItem from="1766331866381" duration="6488000" />
+      <workItem from="1766418182946" duration="5012000" />
+      <workItem from="1766505273420" duration="710000" />
+      <workItem from="1766505995224" duration="3490000" />
+      <workItem from="1766509564299" duration="35000" />
+      <workItem from="1766512603888" duration="628000" />
+      <workItem from="1766513243870" duration="378000" />
+      <workItem from="1766513633384" duration="106000" />
+      <workItem from="1766513751758" duration="535000" />
+      <workItem from="1766514299193" duration="437000" />
+      <workItem from="1766514750434" duration="396000" />
+      <workItem from="1766547511057" duration="1115000" />
+      <workItem from="1766548753385" duration="841000" />
+      <workItem from="1766549606724" duration="574000" />
+      <workItem from="1766552865914" duration="562000" />
+      <workItem from="1766575424322" duration="202000" />
+      <workItem from="1766575637453" duration="3716000" />
     </task>
+    <task id="LOCAL-00001" summary="добавлены модель Person, PersonDao">
+      <created>1766081900999</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1766081900999</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -106,5 +168,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="добавлены модель Person, PersonDao" />
+    <option name="LAST_COMMIT_MESSAGE" value="добавлены модель Person, PersonDao" />
   </component>
 </project>

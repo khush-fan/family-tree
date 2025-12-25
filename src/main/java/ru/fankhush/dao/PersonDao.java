@@ -1,4 +1,4 @@
-package ru.fankhush;
+package ru.fankhush.dao;
 
 import ru.fankhush.entity.Gender;
 import ru.fankhush.entity.Person;
@@ -34,7 +34,12 @@ public class PersonDao {
                 father_id = ?,
                 mother_id = ?,
                 spouse_id = ?
+                WHERE id = ?
             """;
+    private static final String CHILD_CHILDREN_SQL = """
+            SELECT * FROM persons 
+            WHERE father_id = ? OR mother_id = ?;
+                        """;
 
     private PersonDao() {
     }
@@ -57,6 +62,7 @@ public class PersonDao {
             statement.executeUpdate();
 
             var keys = statement.getGeneratedKeys();
+
             if (keys.next())
                 person.setId(keys.getInt("id"));
 
@@ -75,7 +81,6 @@ public class PersonDao {
             var result = statement.executeQuery();
 
             while (result.next()) {
-                System.out.println(result);
                 persons.add(buildPerson(result));
             }
             return persons;
@@ -121,10 +126,33 @@ public class PersonDao {
             statement.setString(1, person.getName());
             statement.setString(2, person.getGender().name());
             statement.setDate(3, Date.valueOf(person.getBirthDate()));
+            statement.setString(4, person.getPhoto());
+            setOptionalInt(statement, 5, Optional.ofNullable(person.getFatherId()));
+            setOptionalInt(statement, 6, Optional.ofNullable(person.getMotherId()));
+            setOptionalInt(statement, 7, Optional.ofNullable(person.getSpouseId()));
+            statement.setInt(8, person.getId());
 
             return statement.executeUpdate() > 0;
         } catch (SQLException e) {
-            throw new RuntimeException("Ошибка при удалении: " + e.getMessage(), e);
+            throw new RuntimeException("Ошибка при обновлении: " + e.getMessage(), e);
+        }
+    }
+
+    public List<Person> findChildren(Integer parentId) {
+        List<Person> children = new ArrayList<>();
+        try (var connection = ConnectionManager.get();
+             var statement = connection.prepareStatement(CHILD_CHILDREN_SQL);
+        ) {
+            statement.setInt(1, parentId);
+            statement.setInt(2, parentId);
+            var resultSet = statement.executeQuery();
+
+            while(resultSet.next()){
+                children.add(buildPerson(resultSet));
+            }
+            return children;
+        } catch (SQLException e) {
+            throw new RuntimeException("Ошибка при поиске детей: " + e.getMessage(), e);
         }
     }
 
