@@ -4,6 +4,7 @@ import io.javalin.Javalin;
 import io.javalin.http.staticfiles.Location;
 import io.javalin.plugin.bundled.CorsPluginConfig;
 import ru.fankhush.controller.PersonController;
+import ru.fankhush.controller.TreeController;
 
 import java.util.Map;
 
@@ -52,7 +53,14 @@ public class Server {
 
     public static Javalin setupRoutes(Javalin app) {
         app.get("/api/persons", PersonController::getAll);
+        app.get("/api/persons/{id}", PersonController::getById);
+        app.post("/api/persons", PersonController::create);
+        app.put("/api/persons/{id}", PersonController::update);
+        app.delete("/api/persons/{id}", PersonController::delete);
+        app.get("/api/persons/{id}/children", PersonController::getChildren);
+        app.post("/api/persons/{id}/marry", PersonController::marry);
 
+        app.get("/api/tree", TreeController::getFamilyTree);
         return app;
     }
 }
