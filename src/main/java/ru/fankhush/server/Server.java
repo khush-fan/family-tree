@@ -52,15 +52,14 @@ public class Server {
 
 
     public static Javalin setupRoutes(Javalin app) {
-        app.get("/api/persons", PersonController::getAll);
-        app.get("/api/persons/{id}", PersonController::getById);
-        app.post("/api/persons", PersonController::create);
-        app.put("/api/persons/{id}", PersonController::update);
-        app.delete("/api/persons/{id}", PersonController::delete);
-        app.get("/api/persons/{id}/children", PersonController::getChildren);
-        app.post("/api/persons/{id}/marry", PersonController::marry);
-
-        app.get("/api/tree", TreeController::getFamilyTree);
+        app.get("/persons", PersonController::getAll);
+        app.get("/persons/{id}", PersonController::getById);
+        app.post("/persons", PersonController::create);
+        app.put("/persons/{id}", PersonController::update);
+        app.delete("/persons/{id}", PersonController::delete);
+        app.get("/persons/{id}/children", PersonController::getChildren);
+        app.post("/persons/{id}/marry", PersonController::marry);
+        app.get("/tree", TreeController::getFamilyTree);
         return app;
     }
 }

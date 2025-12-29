@@ -64,19 +64,92 @@ public class PersonController {
             personDto.setId(id);
             var updatedPerson = service.updatePerson(id, personDto);
             ctx.json(updatedPerson);
-        } catch(NumberFormatException e){
+        } catch (NumberFormatException e) {
             ctx.status(HttpStatus.BAD_REQUEST_400)
                     .json(errorResponse("Неверный id", e));
-        } catch(JsonProcessingException e){
+        } catch (JsonProcessingException e) {
             ctx.status(HttpStatus.BAD_REQUEST_400)
                     .json(errorResponse("Неверный формат json", e));
+        } catch (RuntimeException e) {
+            ctx.status(HttpStatus.NOT_FOUND_404)
+                    .json(errorResponse(e.getMessage(), e));
+        } catch (Exception e) {
+            ctx.status(HttpStatus.INTERNAL_SERVER_ERROR_500)
+                    .json(errorResponse("Ошибка при обновлении человека", e));
+        }
+    }
+
+    public static void delete(Context ctx) {
+        try {
+            var id = Integer.parseInt(ctx.pathParam("id"));
+            var deleted = service.deletePerson(id);
+            if (deleted) {
+                ctx.status(HttpStatus.NO_CONTENT_204);
+            } else {
+                ctx.status(HttpStatus.NOT_FOUND_404)
+                        .json(Map.of("message", "Человек не найден"));
+            }
+        } catch (NumberFormatException e) {
+            ctx.status(HttpStatus.BAD_REQUEST_400)
+                    .json(errorResponse("Неверный формат ID", e));
+        } catch (Exception e) {
+            ctx.status(HttpStatus.INTERNAL_SERVER_ERROR_500)
+                    .json(errorResponse("Ошибка при удалении", e));
+        }
+    }
+
+    public static void getChildren(Context ctx) {
+        try {
+            var parentId = Integer.parseInt(ctx.pathParam("id"));
+            var childs = service.findChildren(parentId);
+            ctx.json(childs);
+        } catch (NumberFormatException e) {
+            ctx.status(HttpStatus.BAD_REQUEST_400)
+                    .json(errorResponse("Неверный формат ID", e));
+        } catch (Exception e) {
+            ctx.status(HttpStatus.INTERNAL_SERVER_ERROR_500)
+                    .json(errorResponse("Произошла ошибка при получении детей по ID родителя", e));
+        }
+    }
+
+    public static void marry(Context ctx) {
+        try {
+            var person1Id = Integer.parseInt(ctx.pathParam("id"));
+
+            var requestBody = mapper.readValue(ctx.body());
+
+            if (!requestBody.has("spouseId")) {
+                ctx.status(HttpStatus.BAD_REQUEST_400)
+                        .json(Map.of("error", "Отсутствует spouseId в теле запроса"));
+                return;
+            }
+
+            Integer person2Id = requestBody.get("spouseId").asInt();
+            service.marry(person1Id, person2Id);
+
+            ctx.json(
+                    Map.of(
+                            "message", "Супруги успешно созданы",
+                            "person1Id", person1Id,
+                            "person2Id", person2Id
+                    )
+            );
+        } catch (NumberFormatException e) {
+            ctx.status(HttpStatus.BAD_REQUEST_400)
+                    .json(errorResponse("Неверный формат ID", e));
+        } catch (JsonProcessingException e){
+            ctx.status(HttpStatus.BAD_REQUEST_400)
+                    .json(errorResponse("Неверный формат JSON", e));
         } catch (RuntimeException e){
             ctx.status(HttpStatus.NOT_FOUND_404)
                     .json(errorResponse(e.getMessage(), e));
         } catch (Exception e){
             ctx.status(HttpStatus.INTERNAL_SERVER_ERROR_500)
-                    .json(errorResponse("Ошибка при обновлении человека", e));
+                    .json(errorResponse("Произошла ошибка при установки замужества", e));
         }
+
+
+
     }
 
     private static Map<String, String> errorResponse(String message, Exception e) {

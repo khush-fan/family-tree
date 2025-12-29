@@ -4,8 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e65ea20b-a875-43b3-be7e-1e369a3c8c6b" name="Changes" comment="добавлены модель Person, PersonDao">
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/fankhush/controller/TreeController.java" afterDir="false" />
+    <list default="true" id="e65ea20b-a875-43b3-be7e-1e369a3c8c6b" name="Changes" comment="добавлены методы в PersonController и TreeController">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ru/fankhush/controller/PersonController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/fankhush/controller/PersonController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ru/fankhush/server/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/fankhush/server/Server.java" afterDir="false" />
@@ -126,7 +125,8 @@
       <workItem from="1766552865914" duration="562000" />
       <workItem from="1766575424322" duration="202000" />
       <workItem from="1766575637453" duration="3716000" />
-      <workItem from="1766682251310" duration="2009000" />
+      <workItem from="1766682251310" duration="3161000" />
+      <workItem from="1767025389472" duration="3920000" />
     </task>
     <task id="LOCAL-00001" summary="добавлены модель Person, PersonDao">
       <created>1766081900999</created>
@@ -142,7 +142,14 @@
       <option name="project" value="LOCAL" />
       <updated>1766682514361</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="добавлены методы в PersonController и TreeController">
+      <created>1766685643969</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1766685643969</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -161,6 +168,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="добавлены модель Person, PersonDao" />
-    <option name="LAST_COMMIT_MESSAGE" value="добавлены модель Person, PersonDao" />
+    <MESSAGE value="добавлены методы в PersonController и TreeController" />
+    <option name="LAST_COMMIT_MESSAGE" value="добавлены методы в PersonController и TreeController" />
   </component>
 </project>
