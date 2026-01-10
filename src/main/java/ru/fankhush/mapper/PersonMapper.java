@@ -66,13 +66,13 @@ public class PersonMapper {
         if (person == null) return null;
         return FamilyTreeNodeDto.builder()
                 .id(person.getId())
-                .pid(person.getSpouseId())
+                .pids(person.getSpouseId())
                 .mid(person.getMotherId())
                 .fid(person.getFatherId())
                 .name(person.getName())
                 .born(formatDate(person.getBirthDate()))
                 .gender(person.getGender() != null ? person.getGender().name().toLowerCase() : "")
-                .image(person.getPhoto())
+                .photo(person.getPhoto())
                 .build();
     }
 
@@ -81,13 +81,13 @@ public class PersonMapper {
 
         return FamilyTreeNodeDto.builder()
                 .id(dto.getId())
-                .pid(dto.getSpouseId())
+                .pids(dto.getSpouseId())
                 .mid(dto.getMotherId())
                 .fid(dto.getFatherId())
                 .name(dto.getName())
                 .born(formatDate(dto.getBirthDate()))
                 .gender(dto.getGender() != null ? dto.getGender().toLowerCase() : "")
-                .image(dto.getPhoto())
+                .photo(dto.getPhoto())
                 .build();
     }
 

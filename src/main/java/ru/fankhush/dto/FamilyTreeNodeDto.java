@@ -11,11 +11,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class FamilyTreeNodeDto {
     private Integer id;
-    private Integer pid;
+    private Integer pids;
     private Integer mid;
     private Integer fid;
     private String name;
-    private String image;
+    private String photo;
     private String gender;
     private String born;
 }

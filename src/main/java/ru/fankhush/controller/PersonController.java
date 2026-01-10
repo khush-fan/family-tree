@@ -116,7 +116,7 @@ public class PersonController {
         try {
             var person1Id = Integer.parseInt(ctx.pathParam("id"));
 
-            var requestBody = mapper.readValue(ctx.body());
+            var requestBody = mapper.readTree(ctx.body());
 
             if (!requestBody.has("spouseId")) {
                 ctx.status(HttpStatus.BAD_REQUEST_400)
