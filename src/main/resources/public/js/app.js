@@ -1,5 +1,6 @@
-const API = "http://localhost:8080";
+const API = "http://localhost:8081";
 let family;
+
 async function loadTree() {
     const tree = document.getElementById('tree');
     try {
@@ -24,7 +25,7 @@ async function loadTree() {
             `;
             return null;
         }
-        if (!family){
+        if (!family) {
             family = createFamilyTree(tree, data.nodes);
         } else {
             family.load(data.nodes);
@@ -46,7 +47,7 @@ async function loadTree() {
     }
 }
 
-function createFamilyTree(container, nodes){
+function createFamilyTree(container, nodes) {
     let options = getOptions();
     return new FamilyTree(container, {
         nodes: nodes,
@@ -54,7 +55,7 @@ function createFamilyTree(container, nodes){
         scaleInitial: options.scaleInitial,
         mode: 'dark',
         template: 'hugo',
-        roots: [3],
+        roots: [1],
 
         nodeMenu: {
             details: {text: "Подробности"},
@@ -62,11 +63,14 @@ function createFamilyTree(container, nodes){
             remove: {text: "Удалить"},
         },
         nodeCircleMenu: {
-            addParentNode: {
-                mother: "sdfsd",
-            }
+            // addParentNode: {
+            //     mother: "sdfsd",
+            // }
         },
-        nodeTreeMenu: true,
+        nodeContextMenu: {
+            edit: {text: "Edit", icon: FamilyTree.icon.edit(18, 18, '#039BE5')},
+        },
+        nodeTreeMenu: false,
         nodeBinding: {
             field_0: 'name',
             field_1: 'born',
@@ -76,21 +80,12 @@ function createFamilyTree(container, nodes){
         editForm: {
             titleBinding: "name",
             photoBinding: "photo",
-            // addMoreBtn: 'Добавить поле',
-            // addMore: 'Add more elements',
-            // addMoreFieldName: 'Element name',
             generateElementsFromFields: false,
             elements: [
                 {type: 'textbox', label: 'Имя', binding: 'name'},
-                // { type: 'textbox', label: 'Email Address', binding: 'email' },
                 [
-                    // { type: 'textbox', label: 'Phone', binding: 'phone' },
                     {type: 'date', label: 'Дата рождения', binding: 'born'}
                 ],
-                // [
-                //     { type: 'select', options: [{ value: 'bg', text: 'Bulgaria' }, { value: 'ru', text: 'Russia' }, { value: 'gr', text: 'Greece' }], label: 'Country', binding: 'country' },
-                //     { type: 'textbox', label: 'City', binding: 'city' },
-                // ],
                 {type: 'textbox', label: 'Фото', binding: 'photo', btn: 'Upload'},
             ],
             cancelBtn: "Отмена",
@@ -115,7 +110,6 @@ function setupEventListeners() {
     const zoomInBtn = document.getElementById('zoomIn');
     const zoomOutBtn = document.getElementById('zoomOut');
     const fitBtn = document.getElementById('fit');
-    const centerBtn = document.getElementById('center');
 
     if (zoomInBtn) zoomInBtn.addEventListener('click', function () {
         family.zoom(true);
@@ -130,12 +124,7 @@ function setupEventListeners() {
     });
 }
 
-setupEventListeners();
-
-document.addEventListener('DOMContentLoaded', function() {
-    console.log('Страница загружена, загружаем дерево...');
-
-    // Загружаем дерево
+document.addEventListener('DOMContentLoaded', function () {
     loadTree().then(nodes => {
         if (nodes && nodes.length > 0) {
             console.log(`Загружено ${nodes.length} узлов`);
@@ -146,6 +135,50 @@ document.addEventListener('DOMContentLoaded', function() {
                     args.value = date.toLocaleDateString();
                 }
             });
+            family.onInit(function () {
+                const allNodes = Object.values(family.nodes);  // Массив всех узлов
+                console.log(allNodes);  // [{id:1, name:'1', ...}, ...]
+            });
+            family.onUpdateNode(async (args) => {
+                if (args.addNodesData && args.addNodesData.length > 0) {
+                    console.log("addNodesData", args.addNodesData);
+                    let node = args.addNodesData[0];
+
+                    try {
+                        // 1. Ждём ответа от сервера
+                        const response = await fetch(`${API}/persons`, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({
+                                name: node.name || 'Новый человек',
+                                gender: node.gender || 'male',
+                                birthDate: node.born ? new Date(node.born).toISOString().split('T')[0] : new Date().toISOString().split('T')[0],
+                                photo: node.photo || '',
+                                fatherId: node.fid || null,
+                                motherId: node.mid || null,
+                                spouseId: node.pids?.[0] || null,
+                            })
+                        });
+
+                        const data = await response.json();
+
+                        if (data.nodes && Array.isArray(data.nodes)) {
+                            family.load(data.nodes);  // ← массив узлов
+                        } else {
+                            console.warn('Неверный формат ответа:', data);
+                        }
+
+                    } catch (error) {
+                        console.error('Ошибка добавления:', error);
+                    }
+                }
+                if (args.updateNodesData && args.updateNodesData.length > 0) {
+                    // args.addNodesData содержит массив добавленных узлов
+                    console.log('Обновление узла:', args.updateNodesData);
+                }
+            })
         }
     });
 });

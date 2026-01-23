@@ -6,16 +6,20 @@ import ru.fankhush.dto.FamilyTreeNodeDto;
 import ru.fankhush.dto.PersonDto;
 import ru.fankhush.mapper.PersonMapper;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class PersonService {
     private final static PersonDao personDao = PersonDao.getInstance();
 
-    public PersonDto createPerson(CreatePersonRequestDto requestDto) {
+    public FamilyTreeNodeDto createPerson(CreatePersonRequestDto requestDto) {
         var person = PersonMapper.toEntity(requestDto);
         var savedPerson = personDao.save(person);
-        return PersonMapper.toPersonDto(savedPerson);
+        if(savedPerson.getSpouseId() != null){
+            marry(savedPerson.getId(), savedPerson.getSpouseId());
+        }
+        return PersonMapper.toFamilyTreeNodeDto(savedPerson);
     }
 
     public PersonDto getPersonById(Integer id) {
@@ -32,6 +36,7 @@ public class PersonService {
     public List<FamilyTreeNodeDto> getFamilyTree() {
         return personDao.findAll().stream()
                 .map(PersonMapper::toFamilyTreeNodeDto)
+                .sorted(Comparator.comparing(FamilyTreeNodeDto::getId))
                 .collect(Collectors.toList());
     }
 
@@ -55,15 +60,10 @@ public class PersonService {
     }
 
     public void marry(Integer personId1, Integer personId2) {
-        var person1 = personDao.findById(personId1)
-                .orElseThrow(() -> new RuntimeException("Человек с ID: " + personId1 + " не найден"));
         var person2 = personDao.findById(personId2)
                 .orElseThrow(() -> new RuntimeException("Человек с ID: " + personId2 + " не найден"));
 
-        person1.setSpouseId(personId2);
         person2.setSpouseId(personId1);
-
-        personDao.update(person1);
         personDao.update(person2);
     }
 

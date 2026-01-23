@@ -8,6 +8,7 @@ import ru.fankhush.entity.Person;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 public class PersonMapper {
     public static PersonDto toPersonDto(Person person) {
@@ -66,7 +67,7 @@ public class PersonMapper {
         if (person == null) return null;
         return FamilyTreeNodeDto.builder()
                 .id(person.getId())
-                .pids(person.getSpouseId())
+                .pids(person.getSpouseId() != null ? List.of(person.getSpouseId()) : List.of())
                 .mid(person.getMotherId())
                 .fid(person.getFatherId())
                 .name(person.getName())
@@ -81,7 +82,7 @@ public class PersonMapper {
 
         return FamilyTreeNodeDto.builder()
                 .id(dto.getId())
-                .pids(dto.getSpouseId())
+                .pids(List.of(dto.getSpouseId()))
                 .mid(dto.getMotherId())
                 .fid(dto.getFatherId())
                 .name(dto.getName())

@@ -9,7 +9,7 @@ import ru.fankhush.controller.TreeController;
 import java.util.Map;
 
 public class Server {
-    private static final int PORT = 8080;
+    private static final int PORT = 8081;
 
     public static void main(String[] args) {
         Javalin app = createApp();

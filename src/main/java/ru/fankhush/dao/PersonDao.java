@@ -123,6 +123,7 @@ public class PersonDao {
         try (var connection = ConnectionManager.get();
              var statement = connection.prepareStatement(UPDATE_SQL);
         ) {
+            System.out.println(person);
             statement.setString(1, person.getName());
             statement.setString(2, person.getGender().name());
             statement.setDate(3, Date.valueOf(person.getBirthDate()));
@@ -170,7 +171,7 @@ public class PersonDao {
     }
 
     private void setOptionalInt(PreparedStatement statement, int index, Optional<Integer> value) throws SQLException {
-        if (value != null && value.isPresent()) {
+        if (value != null && value.isPresent() && value.get() > 0) {
             statement.setInt(index, value.get());
         } else {
             statement.setNull(index, Types.INTEGER);

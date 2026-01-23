@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.util.List;
+
 @Data
 @Builder
 @NoArgsConstructor
@@ -18,4 +20,5 @@ public class CreatePersonRequestDto {
     private Integer fatherId;
     private Integer motherId;
     private Integer spouseId;
+    private List<Integer> pids;
 }

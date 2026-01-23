@@ -7,6 +7,7 @@ import org.eclipse.jetty.http.HttpStatus;
 import ru.fankhush.config.JacksonConfig;
 import ru.fankhush.dto.CreatePersonRequestDto;
 import ru.fankhush.dto.PersonDto;
+import ru.fankhush.mapper.PersonMapper;
 import ru.fankhush.service.PersonService;
 
 import java.util.HashMap;
@@ -45,15 +46,29 @@ public class PersonController {
 
     public static void create(Context ctx) {
         try {
-            var requestDto = mapper.readValue(ctx.body(), CreatePersonRequestDto.class);
+//            var requestDto = ctx.bodyAsClass(CreatePersonRequestDto.class);
+//            System.out.println(requestDto);
+//            var createdPerson = service.createPerson(requestDto);
+//            var updatedFamilyTree = service.getFamilyTree();
+//            Map<String, Object> response = new HashMap<>();
+//            response.put("nodes", updatedFamilyTree);
+//            ctx.status(HttpStatus.CREATED_201).json(response);
+            var requestDto = ctx.bodyAsClass(CreatePersonRequestDto.class);
+            System.out.println("DTO: " + requestDto);
+
             var createdPerson = service.createPerson(requestDto);
-            ctx.status(HttpStatus.CREATED_201).json(createdPerson);
-        } catch (JsonProcessingException e) {
-            ctx.status(HttpStatus.BAD_REQUEST_400)
-                    .json(errorResponse("Неверный формат json", e));
+            var updatedFamilyTree = service.getFamilyTree();
+
+            Map<String, Object> response = new HashMap<>();
+            response.put("nodes", updatedFamilyTree);
+            ctx.status(HttpStatus.CREATED_201).json(response);
+//        } catch (JsonProcessingException e) {
+//            ctx.status(HttpStatus.BAD_REQUEST_400)
+//                    .json(errorResponse("Неверный формат json", e));
         } catch (Exception e) {
-            ctx.status(HttpStatus.INTERNAL_SERVER_ERROR_500)
-                    .json(errorResponse("Ошибка при создании человека", e));
+            e.printStackTrace();
+//            ctx.status(HttpStatus.INTERNAL_SERVER_ERROR_500)
+//                    .json(errorResponse("Ошибка при создании человека", e.printStackTrace()));
         }
     }
 

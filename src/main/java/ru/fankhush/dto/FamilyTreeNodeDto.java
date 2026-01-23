@@ -5,13 +5,15 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class FamilyTreeNodeDto {
     private Integer id;
-    private Integer pids;
+    private List<Integer> pids;
     private Integer mid;
     private Integer fid;
     private String name;

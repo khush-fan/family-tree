@@ -4,10 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e65ea20b-a875-43b3-be7e-1e369a3c8c6b" name="Changes" comment="добавлены методы в PersonController и TreeController">
+    <list default="true" id="e65ea20b-a875-43b3-be7e-1e369a3c8c6b" name="Changes" comment="в app.js добавил функционал вывода дерева, исправил FamilyTreeNodeDto, PersonController, PersonMapper">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ru/fankhush/controller/PersonController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/fankhush/controller/PersonController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/fankhush/dao/PersonDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/fankhush/dao/PersonDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/fankhush/dto/CreatePersonRequestDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/fankhush/dto/CreatePersonRequestDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/fankhush/dto/FamilyTreeNodeDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/fankhush/dto/FamilyTreeNodeDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/fankhush/mapper/PersonMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/fankhush/mapper/PersonMapper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ru/fankhush/server/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/fankhush/server/Server.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/fankhush/service/PersonService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/fankhush/service/PersonService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/public/js/app.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,6 +49,7 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Fanil/IdeaProjects/family-tree&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
@@ -126,7 +133,24 @@
       <workItem from="1766575424322" duration="202000" />
       <workItem from="1766575637453" duration="3716000" />
       <workItem from="1766682251310" duration="3161000" />
-      <workItem from="1767025389472" duration="3920000" />
+      <workItem from="1767025389472" duration="6693000" />
+      <workItem from="1767120739973" duration="236000" />
+      <workItem from="1767202956271" duration="204000" />
+      <workItem from="1767292373389" duration="2654000" />
+      <workItem from="1768066335606" duration="4163000" />
+      <workItem from="1768140903787" duration="15000" />
+      <workItem from="1768148459684" duration="1694000" />
+      <workItem from="1768234688920" duration="4485000" />
+      <workItem from="1768240355179" duration="17000" />
+      <workItem from="1768326472596" duration="2477000" />
+      <workItem from="1768409982501" duration="5652000" />
+      <workItem from="1768738101707" duration="31000" />
+      <workItem from="1768842417328" duration="415000" />
+      <workItem from="1768844249543" duration="2864000" />
+      <workItem from="1768922640081" duration="9068000" />
+      <workItem from="1769008834570" duration="8379000" />
+      <workItem from="1769100335815" duration="1437000" />
+      <workItem from="1769084739908" duration="3336000" />
     </task>
     <task id="LOCAL-00001" summary="добавлены модель Person, PersonDao">
       <created>1766081900999</created>
@@ -149,7 +173,21 @@
       <option name="project" value="LOCAL" />
       <updated>1766685643969</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="добавлены методы delete, getChildren, marry в PersonController">
+      <created>1767029581139</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1767029581139</updated>
+    </task>
+    <task id="LOCAL-00005" summary="в app.js добавил функционал вывода дерева, исправил FamilyTreeNodeDto, PersonController, PersonMapper">
+      <created>1768069235188</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1768069235188</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -169,6 +207,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="добавлены модель Person, PersonDao" />
     <MESSAGE value="добавлены методы в PersonController и TreeController" />
-    <option name="LAST_COMMIT_MESSAGE" value="добавлены методы в PersonController и TreeController" />
+    <MESSAGE value="добавлены методы delete, getChildren, marry в PersonController" />
+    <MESSAGE value="в app.js добавил функционал вывода дерева, исправил FamilyTreeNodeDto, PersonController, PersonMapper" />
+    <option name="LAST_COMMIT_MESSAGE" value="в app.js добавил функционал вывода дерева, исправил FamilyTreeNodeDto, PersonController, PersonMapper" />
   </component>
 </project>
