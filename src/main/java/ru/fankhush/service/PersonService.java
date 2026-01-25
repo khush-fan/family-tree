@@ -44,7 +44,11 @@ public class PersonService {
         if (!id.equals(personDto.getId())) {
             throw new RuntimeException("ID не совпадают!");
         }
+        System.out.println("dto при обновлении: " + personDto);
+
         var person = PersonMapper.toEntity(personDto);
+        System.out.println(person);
+
         personDao.update(person);
         return PersonMapper.toPersonDto(person);
     }

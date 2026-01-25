@@ -140,9 +140,10 @@ document.addEventListener('DOMContentLoaded', function () {
                 console.log(allNodes);  // [{id:1, name:'1', ...}, ...]
             });
             family.onUpdateNode(async (args) => {
+                let node;
                 if (args.addNodesData && args.addNodesData.length > 0) {
                     console.log("addNodesData", args.addNodesData);
-                    let node = args.addNodesData[0];
+                    node = args.addNodesData[0];
 
                     try {
                         // 1. Ждём ответа от сервера
@@ -175,13 +176,49 @@ document.addEventListener('DOMContentLoaded', function () {
                     }
                 }
                 if (args.updateNodesData && args.updateNodesData.length > 0) {
-                    // args.addNodesData содержит массив добавленных узлов
-                    console.log('Обновление узла:', args.updateNodesData);
+                    node = args.updateNodesData[0];
+                    updateNode(node, `${API}/persons/${node.id}`)
                 }
             })
         }
     });
 });
+
+async function updateNode(node, url) {
+    try {
+        // 1. Ждём ответа от сервера
+        const response = await fetch(url, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                    id: node.id,
+                    name: node.name || 'Новый человек',
+                    gender: node.gender || 'male',
+                    birthDate: node.born ? new Date(node.born).toISOString().split('T')[0] : new Date().toISOString().split('T')[0],
+                    photo: node.photo || null,
+                    fatherId: node.fid || null,
+                    motherId: node.mid || null,
+                    spouseId: node.pids?.[0] || null,
+                }
+            )
+        });
+
+        const data = await response.json();
+
+        if (data.nodes && Array.isArray(data.nodes)) {
+            console.log("Узел успешно обновлен")
+        } else {
+            console.warn('Неверный формат ответа:', data);
+        }
+
+    } catch (error) {
+        console.error('Ошибка добавления:', error);
+    }
+}
+
+
 
 
 

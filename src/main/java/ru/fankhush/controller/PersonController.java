@@ -7,7 +7,6 @@ import org.eclipse.jetty.http.HttpStatus;
 import ru.fankhush.config.JacksonConfig;
 import ru.fankhush.dto.CreatePersonRequestDto;
 import ru.fankhush.dto.PersonDto;
-import ru.fankhush.mapper.PersonMapper;
 import ru.fankhush.service.PersonService;
 
 import java.util.HashMap;
@@ -46,48 +45,36 @@ public class PersonController {
 
     public static void create(Context ctx) {
         try {
-//            var requestDto = ctx.bodyAsClass(CreatePersonRequestDto.class);
-//            System.out.println(requestDto);
-//            var createdPerson = service.createPerson(requestDto);
-//            var updatedFamilyTree = service.getFamilyTree();
-//            Map<String, Object> response = new HashMap<>();
-//            response.put("nodes", updatedFamilyTree);
-//            ctx.status(HttpStatus.CREATED_201).json(response);
             var requestDto = ctx.bodyAsClass(CreatePersonRequestDto.class);
-            System.out.println("DTO: " + requestDto);
-
             var createdPerson = service.createPerson(requestDto);
             var updatedFamilyTree = service.getFamilyTree();
-
             Map<String, Object> response = new HashMap<>();
             response.put("nodes", updatedFamilyTree);
             ctx.status(HttpStatus.CREATED_201).json(response);
-//        } catch (JsonProcessingException e) {
-//            ctx.status(HttpStatus.BAD_REQUEST_400)
-//                    .json(errorResponse("Неверный формат json", e));
+
         } catch (Exception e) {
-            e.printStackTrace();
-//            ctx.status(HttpStatus.INTERNAL_SERVER_ERROR_500)
-//                    .json(errorResponse("Ошибка при создании человека", e.printStackTrace()));
+            ctx.status(HttpStatus.INTERNAL_SERVER_ERROR_500)
+                    .json(errorResponse("Ошибка при создании человека", e));
         }
     }
 
     public static void update(Context ctx) {
         try {
             Integer id = Integer.parseInt(ctx.pathParam("id"));
-            var personDto = mapper.readValue(ctx.body(), PersonDto.class);
+            var personDto = ctx.bodyAsClass(PersonDto.class);
             personDto.setId(id);
+            System.out.println(personDto);
             var updatedPerson = service.updatePerson(id, personDto);
+            System.out.println("updated: "+ updatedPerson);
             ctx.json(updatedPerson);
         } catch (NumberFormatException e) {
             ctx.status(HttpStatus.BAD_REQUEST_400)
                     .json(errorResponse("Неверный id", e));
-        } catch (JsonProcessingException e) {
-            ctx.status(HttpStatus.BAD_REQUEST_400)
-                    .json(errorResponse("Неверный формат json", e));
         } catch (RuntimeException e) {
-            ctx.status(HttpStatus.NOT_FOUND_404)
-                    .json(errorResponse(e.getMessage(), e));
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+//            ctx.status(HttpStatus.NOT_FOUND_404)
+//                    .json(errorResponse(e.getMessage(), e));
         } catch (Exception e) {
             ctx.status(HttpStatus.INTERNAL_SERVER_ERROR_500)
                     .json(errorResponse("Ошибка при обновлении человека", e));

@@ -32,7 +32,7 @@ public class PersonMapper {
         return Person.builder()
                 .id(dto.getId())
                 .name(dto.getName())
-                .gender(Gender.valueOf(dto.getGender()))
+                .gender(Gender.valueOf(dto.getGender().toUpperCase()))
                 .birthDate(dto.getBirthDate())
                 .fatherId(dto.getFatherId())
                 .motherId(dto.getMotherId())
