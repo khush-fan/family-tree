@@ -16,6 +16,8 @@ public class PersonService {
     public FamilyTreeNodeDto createPerson(CreatePersonRequestDto requestDto) {
         var person = PersonMapper.toEntity(requestDto);
         var savedPerson = personDao.save(person);
+        System.out.println("Saved person: " + savedPerson);
+        System.out.println("Spouse person Id: " + savedPerson.getSpouseId());
         if(savedPerson.getSpouseId() != null){
             marry(savedPerson.getId(), savedPerson.getSpouseId());
         }
@@ -54,6 +56,7 @@ public class PersonService {
     }
 
     public boolean deletePerson(Integer id) {
+        personDao.clearReferences(id);
         return personDao.delete(id);
     }
 

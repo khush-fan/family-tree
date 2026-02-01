@@ -41,6 +41,14 @@ public class PersonDao {
             WHERE father_id = ? OR mother_id = ?;
                         """;
 
+    private static final String CLEAR_REFERENCES_SQL = """
+                UPDATE persons
+                    SET father_id = CASE WHEN father_id = ? THEN NULL ELSE father_id END,
+                        mother_id = CASE WHEN mother_id = ? THEN NULL ELSE mother_id END,
+                        spouse_id = CASE WHEN spouse_id = ? THEN NULL ELSE spouse_id END
+                    WHERE father_id = ? OR mother_id = ? OR spouse_id = ?
+            """;
+
     private PersonDao() {
     }
 
@@ -139,6 +147,25 @@ public class PersonDao {
         }
     }
 
+
+    public void clearReferences(Integer id) {
+        try (
+                var connection = ConnectionManager.get();
+                var statement = connection.prepareStatement(CLEAR_REFERENCES_SQL);
+        ) {
+            statement.setInt(1, id);
+            statement.setInt(2, id);
+            statement.setInt(3, id);
+            statement.setInt(4, id);
+            statement.setInt(5, id);
+            statement.setInt(6, id);
+            var result = statement.executeUpdate();
+            System.out.println("Очищено ссылок: " + result);
+        } catch (SQLException e) {
+            throw new RuntimeException("Ошибка очистки: " + e.getMessage(), e);
+        }
+    }
+
     public List<Person> findChildren(Integer parentId) {
         List<Person> children = new ArrayList<>();
         try (var connection = ConnectionManager.get();
@@ -148,7 +175,7 @@ public class PersonDao {
             statement.setInt(2, parentId);
             var resultSet = statement.executeQuery();
 
-            while(resultSet.next()){
+            while (resultSet.next()) {
                 children.add(buildPerson(resultSet));
             }
             return children;
@@ -156,6 +183,7 @@ public class PersonDao {
             throw new RuntimeException("Ошибка при поиске детей: " + e.getMessage(), e);
         }
     }
+
 
     private Person buildPerson(ResultSet result) throws SQLException {
         return new Person(

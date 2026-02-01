@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e65ea20b-a875-43b3-be7e-1e369a3c8c6b" name="Changes" comment="добавление узла">
+    <list default="true" id="e65ea20b-a875-43b3-be7e-1e369a3c8c6b" name="Changes" comment="операция update">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/fankhush/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/fankhush/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/fankhush/controller/PersonController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/fankhush/controller/PersonController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/fankhush/dto/PersonDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/fankhush/dto/PersonDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/fankhush/dao/PersonDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/fankhush/dao/PersonDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ru/fankhush/service/PersonService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/fankhush/service/PersonService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/public/js/app.js" afterDir="false" />
     </list>
@@ -153,7 +151,12 @@
       <workItem from="1769084739908" duration="3336000" />
       <workItem from="1769171530046" duration="3888000" />
       <workItem from="1769280225092" duration="2259000" />
-      <workItem from="1769361479188" duration="3257000" />
+      <workItem from="1769361479188" duration="3372000" />
+      <workItem from="1769531037124" duration="6229000" />
+      <workItem from="1769613385852" duration="9118000" />
+      <workItem from="1769704760790" duration="5733000" />
+      <workItem from="1769882205603" duration="3957000" />
+      <workItem from="1769953713540" duration="2235000" />
     </task>
     <task id="LOCAL-00001" summary="добавлены модель Person, PersonDao">
       <created>1766081900999</created>
@@ -197,7 +200,14 @@
       <option name="project" value="LOCAL" />
       <updated>1769171765593</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="операция update">
+      <created>1769364850183</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1769364850183</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -220,6 +230,7 @@
     <MESSAGE value="добавлены методы delete, getChildren, marry в PersonController" />
     <MESSAGE value="в app.js добавил функционал вывода дерева, исправил FamilyTreeNodeDto, PersonController, PersonMapper" />
     <MESSAGE value="добавление узла" />
-    <option name="LAST_COMMIT_MESSAGE" value="добавление узла" />
+    <MESSAGE value="операция update" />
+    <option name="LAST_COMMIT_MESSAGE" value="операция update" />
   </component>
 </project>
