@@ -89,7 +89,7 @@ function createFamilyTree(container, nodes) {
             elements: [
                 {type: 'textbox', label: 'Имя', binding: 'name'},
                 {type: 'date', label: 'Дата рождения', binding: 'born'},
-                {type: 'textbox', label: 'Фото', binding: 'photo', btn: 'Upload'},
+                {type: 'textbox', label: 'Фото', binding: 'photo', btn: 'Загрузить'},
             ],
             cancelBtn: "Отмена",
             saveAndCloseBtn: "Сохранить и закрыть"
@@ -143,13 +143,18 @@ document.addEventListener('DOMContentLoaded', function () {
                 let node;
                 if (args.addNodesData && args.addNodesData.length > 0) {
                     node = args.addNodesData[0];
-                    await addNode(node)
+                    if (node.pids || node.fid || node.mid){
+                        await addNode(node)
+                    }
                 }
                 if (args.addNodesData.length === 0 && args.updateNodesData && args.updateNodesData.length > 0) {
                     node = args.updateNodesData[0];
                     console.log(node)
-                    updateNode(node, `${API}/persons/${node.id}`)
+                    const savedNode = await updateNode(node, `${API}/persons/${node.id}`);
+
                 }
+
+
 
             })
         }

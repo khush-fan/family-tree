@@ -1,147 +1,3 @@
-/** {*/
-/*    margin: 0;*/
-/*    padding: 0;*/
-/*    box-sizing: border-box;*/
-/*}*/
-
-/*:root {*/
-/*    --bg-main: #0f1419;*/
-/*    --bg-surface: #17212b;*/
-/*    --emerald-400: #34d399;*/
-/*    --emerald-500: #10b981;*/
-/*    --emerald-600: #059669;*/
-/*    --text-main: #f8fafc;*/
-/*    --text-muted: #94a3b8;*/
-/*    --glow-emerald: 0 0 20px rgba(16, 185, 129, 0.4);*/
-/*    --glow-hover: 0 0 30px rgba(16, 185, 129, 0.6);*/
-/*    --radius: 12px;*/
-/*    --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);*/
-/*}*/
-
-/*body {*/
-/*    font-family: 'SF Pro', -apple-system, BlinkMacSystemFont, sans-serif;*/
-/*    background: var(--bg-main);*/
-/*    color: var(--text-main);*/
-/*}*/
-
-/*.container {*/
-/*    max-width: 1400px;*/
-/*    margin: 2rem auto;*/
-/*    background: var(--bg-surface);*/
-/*    border-radius: var(--radius);*/
-/*    box-shadow:*/
-/*            0 25px 50px -12px rgba(0, 0, 0, 0.5),*/
-/*            var(--glow-emerald);*/
-/*    overflow: hidden;*/
-/*    border: 1px solid rgba(16, 185, 129, 0.2);*/
-/*    height: calc(100vh - 4rem);*/
-/*    display: flex;*/
-/*    flex-direction: column;*/
-/*}*/
-
-/*.header {*/
-/*    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);*/
-/*    padding: 2rem 2.5rem;*/
-/*    border-bottom: 1px solid rgba(16, 185, 129, 0.1);*/
-/*    position: relative;*/
-/*}*/
-
-/*.header::after {*/
-/*    content: '';*/
-/*    position: absolute;*/
-/*    bottom: 0;*/
-/*    left: 0;*/
-/*    right: 0;*/
-/*    height: 2px;*/
-/*    background: linear-gradient(90deg, transparent, var(--emerald-400), transparent);*/
-/*}*/
-
-/*.header h1 {*/
-/*    font-size: clamp(2rem, 5vw, 3rem);*/
-/*    font-weight: 800;*/
-/*    background: linear-gradient(135deg, var(--emerald-400), #36d399);*/
-/*    -webkit-background-clip: text;*/
-/*    -webkit-text-fill-color: transparent;*/
-/*    background-clip: text;*/
-/*    margin: 0;*/
-/*    letter-spacing: -0.025em;*/
-/*}*/
-
-/*.controls {*/
-/*    position: absolute;*/
-/*    top: 50%;*/
-/*    right: 2rem;*/
-/*    transform: translateY(-50%);*/
-/*    display: flex;*/
-/*    flex-direction: column;*/
-/*    gap: 1rem;*/
-/*    z-index: 10;*/
-/*}*/
-
-/*.controls button {*/
-/*    width: 56px;*/
-/*    height: 56px;*/
-/*    border: none;*/
-/*    background: rgba(16, 185, 129, 0.15);*/
-/*    color: var(--emerald-400);*/
-/*    border-radius: 50%;*/
-/*    cursor: pointer;*/
-/*    font-size: 1.2rem;*/
-/*    font-weight: 600;*/
-/*    display: flex;*/
-/*    align-items: center;*/
-/*    justify-content: center;*/
-/*    transition: var(--transition);*/
-/*    box-shadow: 0 4px 14px rgba(16, 185, 129, 0.2);*/
-/*    backdrop-filter: blur(10px);*/
-/*    border: 2px solid rgba(52, 211, 153, 0.3);*/
-/*}*/
-
-/*.controls button:hover {*/
-/*    background: rgba(16, 185, 129, 0.25);*/
-/*    box-shadow: var(--glow-hover), 0 8px 25px rgba(0,0,0,0.3);*/
-/*    transform: translateY(-3px) scale(1.05);*/
-/*}*/
-
-/*.controls button:active {*/
-/*    transform: translateY(-1px) scale(0.98);*/
-/*}*/
-
-/*main {*/
-/*    flex: 1;*/
-/*    position: relative;*/
-/*}*/
-
-/*#tree {*/
-/*    width: 100%;*/
-/*    height: 100%;*/
-/*    background: var(--bg-main);*/
-/*}*/
-
-/*!* Адаптивность *!*/
-/*@media (max-width: 768px) {*/
-/*    .container {*/
-/*        margin: 1rem;*/
-/*        height: calc(100vh - 2rem);*/
-/*        border-radius: 16px;*/
-/*    }*/
-
-/*    .controls {*/
-/*        right: 1rem;*/
-/*        top: 6rem;*/
-/*        flex-direction: row;*/
-/*        gap: 0.75rem;*/
-/*    }*/
-
-/*    .header {*/
-/*        padding: 1.5rem;*/
-/*        text-align: center;*/
-/*    }*/
-/*}*/
-
-
-
-/* style.css - Башкирский этно-стиль */
 * {
     margin: 0;
     padding: 0;
@@ -151,10 +7,10 @@
 :root {
     --bg-main: #0f1419;
     --bg-surface: #17212b;
-    --bashkir-emerald: #10b981;
-    --bashkir-blue: #1e40af;
-    --bashkir-red: #dc2626;
-    --bashkir-gold: #fbbf24;
+    --tree-emerald: #10b981;
+    --tree-blue: #1e40af;
+    --tree-red: #dc2626;
+    --tree-gold: #fbbf24;
     --text-main: #f8fafc;
     --text-muted: #94a3b8;
     --glow-emerald: 0 0 20px rgba(16, 185, 129, 0.4);
@@ -218,39 +74,25 @@ body {
     right: 0;
     height: 4px;
     background:
-            linear-gradient(90deg, transparent 0%, var(--bashkir-gold) 20%, var(--bashkir-red) 40%, var(--bashkir-blue) 60%, var(--bashkir-emerald) 80%, transparent 100%);
+            linear-gradient(90deg, transparent 0%, var(--tree-gold) 20%, var(--tree-red) 40%, var(--tree-blue) 60%, var(--tree-emerald) 80%, transparent 100%);
     background-size: 200% 100%;
-    animation: bashkirFlow 3s ease-in-out infinite;
+    animation: treeFlow 3s ease-in-out infinite;
 }
 
-@keyframes bashkirFlow {
+@keyframes treeFlow {
     0%, 100% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
 }
 
 .header h1 {
-    font-size: clamp(2rem, 5vw, 3rem);
-    font-weight: 800;
-    background: linear-gradient(135deg, var(--bashkir-emerald), var(--bashkir-gold), var(--bashkir-blue));
+    font-weight: 500;
+    background: linear-gradient(135deg, var(--tree-emerald), var(--tree-gold), var(--tree-blue));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    background-clip: text;
     margin: 0;
     letter-spacing: -0.025em;
     position: relative;
     z-index: 2;
-}
-
-/* Башкирская звезда над заголовком */
-.header::before {
-    content: '⭐';
-    position: absolute;
-    top: 1rem;
-    right: 2.5rem;
-    font-size: 1.5rem;
-    color: var(--bashkir-gold);
-    filter: drop-shadow(0 0 10px rgba(251, 191, 36, 0.5));
-    animation: twinkle 2s ease-in-out infinite alternate;
 }
 
 @keyframes twinkle {
@@ -274,7 +116,7 @@ body {
     height: 56px;
     border: 2px solid rgba(52, 211, 153, 0.4);
     background: rgba(16, 185, 129, 0.12);
-    color: var(--bashkir-emerald);
+    color: var(--tree-emerald);
     border-radius: 50%;
     cursor: pointer;
     font-size: 1.2rem;
@@ -293,7 +135,7 @@ body {
     content: '';
     position: absolute;
     inset: 0;
-    background: conic-gradient(from 0deg, transparent, var(--bashkir-gold), var(--bashkir-red), transparent);
+    background: conic-gradient(from 0deg, transparent, var(--tree-gold), var(--tree-red), transparent);
     opacity: 0;
     transition: var(--transition);
 }
@@ -301,8 +143,7 @@ body {
 .controls button:hover {
     background: rgba(16, 185, 129, 0.25);
     box-shadow: var(--glow-emerald), 0 8px 25px rgba(0,0,0,0.4);
-    transform: translateY(-3px) scale(1.05) rotate(180deg);
-    border-color: var(--bashkir-emerald);
+    border-color: var(--tree-emerald);
 }
 
 .controls button:hover::before {
