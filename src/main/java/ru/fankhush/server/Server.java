@@ -3,15 +3,20 @@ package ru.fankhush.server;
 import io.javalin.Javalin;
 import io.javalin.http.staticfiles.Location;
 import io.javalin.plugin.bundled.CorsPluginConfig;
+import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import ru.fankhush.Main;
 import ru.fankhush.controller.PersonController;
 import ru.fankhush.controller.TreeController;
 
 import java.util.Map;
-
+@Slf4j
 public class Server {
     private static final int PORT = 8081;
 
     public static void main(String[] args) {
+
         Javalin app = createApp();
         setupRoutes(app);
         app.start(PORT);
@@ -19,11 +24,6 @@ public class Server {
 
     private static Javalin createApp() {
         return Javalin.create(config -> {
-//            config.plugins.enableCors( cors -> {
-//                cors.add(CorsPluginConfig::anyHost);
-//            });
-
-
             config.bundledPlugins.enableCors(cors -> {
                 cors.addRule(CorsPluginConfig.CorsRule::anyHost);
             });
@@ -49,7 +49,6 @@ public class Server {
             ));
         });
     }
-
 
     public static Javalin setupRoutes(Javalin app) {
         app.get("/persons", PersonController::getAll);
