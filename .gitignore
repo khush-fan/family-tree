@@ -15,8 +15,7 @@ target/
 *.rar
 
 ### IntelliJ IDEA ###
-.idea
-*.iws
-*.iml
-*.ipr
+.idea/
+!.idea/modules.xml
+!.idea/*.iml
 
