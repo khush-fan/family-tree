@@ -63,7 +63,6 @@ public class PersonController {
             Integer id = Integer.parseInt(ctx.pathParam("id"));
             var personDto = ctx.bodyAsClass(PersonDto.class);
             personDto.setId(id);
-            System.out.println(personDto);
             var updatedPerson = service.updatePerson(id, personDto);
             System.out.println("updated: "+ updatedPerson);
             ctx.json(updatedPerson);

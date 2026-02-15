@@ -1,7 +1,5 @@
 package ru.fankhush;
 
-import io.javalin.Javalin;
-import ru.fankhush.entity.Gender;
 import ru.fankhush.server.Server;
 import ru.fankhush.service.PersonService;
 
@@ -10,4 +8,6 @@ public class Main {
         PersonService service = new PersonService();
         Server.main(args);
     }
+
+
 }
